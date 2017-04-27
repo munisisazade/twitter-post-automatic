@@ -27,9 +27,9 @@ SEARCH_LIST = ['python','django framework' ,'ruby on rails','javascript','reactj
 
 # This function Search Twitter
 def search(word):
-	"""
-		return Search results type status list
-	"""
+    """
+        return Search results type status list
+    """
     obj = twitter.search(q=word)
     status_list= []
     for x in obj['statuses']:
@@ -38,10 +38,10 @@ def search(word):
 
 
 def check_words(text):
-	"""
-		This method check status and match Japan and Chinese words
-		If find Cannot share tweet ignore this words
-	"""
+    """
+        This method check status and match Japan and Chinese words
+        If find Cannot share tweet ignore this words
+    """
     status = True
     for n in re.findall(ur'[\u4e00-\u9fff]+',text):
         status = False
@@ -52,13 +52,13 @@ def check_words(text):
 
 
 while True:
-	# The main Code start here
-	# First define status list for searching random word
-	# text_list return list of status contain 10 tweets
-	# after find from text_list one random status
-	# chech status words ignore Japan and Chinese lang
-	# then tweet it 
-	# and stop 5 minutes and work again
+    # The main Code start here
+    # First define status list for searching random word
+    # text_list return list of status contain 10 tweets
+    # after find from text_list one random status
+    # chech status words ignore Japan and Chinese lang
+    # then tweet it 
+    # and stop 5 minutes and work again
     text_list = search(SEARCH_LIST[random.randint(0,len(SEARCH_LIST)-1)])
     text = text_list[random.randint(0,len(text_list)-1)][:140]
     if check_words(text):
